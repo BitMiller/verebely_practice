@@ -1,0 +1,47 @@
+[1. feladat (8 pont)]
+
+Készíts programot, ami bekéri a felhasználó születési évét, és kiszámolja, hogy hányadik életévét tölti be
+2023-ban! Ha 2023nál nagyobb számot ad meg a felhasználó, akkor a program írjon ki hibaüzenetet az
+életkor helyett!
+
+
+[2. feladat (14 pont)]
+
+Egy fuvarozó vállalkozás Budapest, Miskolc és Debrecen között szervez utasszállítást. Ford Transit
+járműveket használnak, melyek 9 személyesek, és az átlagfogyasztásuk 6,3 liter/100km. A sofőr óradíja 3950
+Ft/óra, továbbá az Az utak km ára 165Ft.
+Készíts alkalmazást, Ami két város neve és az utasok száma alapján meghatározza a következőket:
+- A fuvar egy főre eső ára
+- A vállalkozás ezen útból származó várható nettó árbevétele (azaz a teljes árból levonva a
+benzinköltséget és a sofőr fizetését)
+A városok távolságának meghatározásához, a várható út hosszához és a benzinár meghatározásához
+használd a google keresőjét!
+
+Példa:
+Budapest – Miskolc távolsága közúton 187 km, a Google utazástervezője szerint kb. 2 óra 10 perc az út.
+5 utas (+ a sofőr) szeretne eljutni a a Transittal Budapestről Miskolcra, akkor a szolgáltatás ára számukra:
+165*187 (km) + 3950*2,17(óra) = 39426,5 HUF, ami egy főre ~7885 HUF.
+Az átlagfogyasztásból a szükséges üzemanyagmennyiség 6,3*1,87 = 11,781 liter,
+A gázolaj átlagára 566,6 Ft/liter. így a várható üzemanyagköltség~6675 HUF.
+Az összes bevételből (39426 forint) kivonjuk a sofőr díját (8572) és az üzemanyagárat (6675), akkor így
+megkapjuk, hogy a fuvar után a vállalkozás bevétele 24179 HUF.
+
+
+[3. feladat (18 pont)]
+
+A vm2023.txt, utf-8 kódolású állomány tartalmazza egy ún. vending machine (termékautomata) aktuális
+kínálatát. A file minden sora egy terméket ír le, pl:
+Csokoládé szelet;150;12
+Ahol az adattagok rendre a következők:
+- termék neve
+- termék ára (HUF)
+- a jelenleg készleten lévő termékek darabszáma
+Olvasd be az állomány sorait egy objektumokat tartalmazó összetett adatszerkezetbe, aminek
+felhasználásával válaszold meg a következő kérdéseket. A képernyőre írást igénylő feladatok kimenetét a
+minta szerint jelenítsd meg:
+- Hány különböző termék van az automatában?
+- mennyi az automatában jelenlek lévő termékek összértéke?
+- Hány terméket lehet megvásárolni legfeljebb 200 Ft-ból?
+- mi a legdrágább termék neve?
+- kérje be a felhasználótól egy termék nevét. Ha van ilyen, írja ki annak adatait, ha nincs, akkor a „nincs
+ilyen nevű termék” felirat jelenjen meg.
