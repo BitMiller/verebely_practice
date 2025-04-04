@@ -20,5 +20,8 @@ function megszamlalas (tomb, tul) {
             db = db + 1;
         }
     }
+
+    return db;
 }
 
+console.log("A(z) [" + szamok + "] tömbben " + megszamlalas(szamok, tulajdonsag) + " szám osztható " + tulajdonsag + "-val/-vel.");
