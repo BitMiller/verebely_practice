@@ -1,7 +1,7 @@
 /*
 Maximum_kiválasztás (X[N], max)
     max = 1;
-    Ciklus i=2-től N-ig
+    Ciklus i = 2-től N-ig
         Ha X[i] > X[max], akkor
             max = i;
         Elágazás vége;
@@ -10,13 +10,13 @@ Eljárás vége;
 */
 
 var szamok = new Array(12, 43, 87, -3);
-var max_index = 0;
+var max_index;
 
-function maximum_kivalasztas(tomb, max) {
-    let max = 0;
+function maximum_kivalasztas(x, max) {
+    max = 0;
 
-    for (let i = 1; i < tomb.length; i++) {
-        if (tomb[i] > tomb[max]) {
+    for (let i = 1; i < x.length; i++) {
+        if (x[i] > x[max]) {
             max = i;
         }
     }

@@ -4,7 +4,7 @@ Eldöntés (X[N], T, VAN)
     Ciklus amíg i <= N, és X[i] nem T tulajdonságú
         i = i + 1
     Ciklus vége;
-    Ha i <= N akkor
+    Ha i <= N, akkor
         VAN
     Elágazás vége;
 Eljárás vége;
@@ -12,20 +12,20 @@ Eljárás vége;
 
 var szamok = new Array(12, 43, 87, -3);
 var tulajdonsag = 2;
-var van = false;
+var van_e = false;
 
-function eldontes (tomb, tul, vn) {
+function eldontes (x, t, van) {
     let i = 0;
 
-    while (i < tomb.length && tomb[i] % tul != 0) {
+    while (i < x.length && x[i] % t != 0) {
         i = i + 1;
     }
 
-    if (i < tomb.length) {
-        vn = true;
+    if (i < x.length) {
+        van = true;
     }
 
-    return vn;
+    return van;
 }
 
-console.log("A(z) [" + szamok + "] tömbben van-e olyan elem, amelyik osztható " + tulajdonsag + "-val/-vel? : " + eldontes(szamok, tulajdonsag, van));
+console.log("A(z) [" + szamok + "] tömbben van-e olyan elem, amelyik osztható " + tulajdonsag + "-val/-vel? : " + eldontes(szamok, tulajdonsag, van_e));

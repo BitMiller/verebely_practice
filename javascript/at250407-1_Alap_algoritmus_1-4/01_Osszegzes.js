@@ -7,10 +7,10 @@
 Eljárás vége;
 */
 
-var szamok = new Array(12, 43, 87, -3);
-var szum;
+var szamok = new Array(13, -4, 50, 2);
+var szum = 0;
 
-function osszegzes (x, s) {
+function osszegzes(x, s) {
     s = 0;
 
     for (let i = 0; i < x.length; i++) {
@@ -20,4 +20,4 @@ function osszegzes (x, s) {
     return s;
 }
 
-console.log("A(z) [" + szamok + "] tömb elemeinek összege: " + osszegzes(szamok, szum));
+console.log(osszegzes(szamok, szum));
