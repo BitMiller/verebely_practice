@@ -12,8 +12,8 @@ Keresés(X[N], T, sorszám)
 Eljárás vége;
 */
 
-//var szamok = new Array(5, -8, 93, 2);
-var szamok = new Array(5, -7, 93, 1);
+//var szamok = new Array(5, 8, 93, 2);
+var szamok = new Array(5, 7, 93, 1);
 var tulajdonsag = 2;
 var index;
 
