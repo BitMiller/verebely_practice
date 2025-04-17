@@ -9,13 +9,13 @@ Eljárás vége;
 */
 
 var szamok = new Array(6, 55, 7, -30);
-var tulajdonsag = 6;
+var tulajdonsag = 2;
 var index;
 
 function kivalasztas(x, t, sorszam) {
     let i = 0;
 
-    while (x[i] != t) {
+    while (x[i] % t != 0) {
         i = i + 1;
     }
 
@@ -24,4 +24,4 @@ function kivalasztas(x, t, sorszam) {
     return sorszam;
 }
 
-console.log("A(z) [" + szamok + "] tömbben a(z) " + tulajdonsag + " szám (első előfordulási helyének) indexe: " + kivalasztas(szamok, tulajdonsag, index));
+console.log("A(z) [" + szamok + "] tömbben az első " + tulajdonsag + "-val/-vel osztható szám: " + szamok[kivalasztas(szamok, tulajdonsag, index)] + " indexe: " + kivalasztas(szamok, tulajdonsag, index));

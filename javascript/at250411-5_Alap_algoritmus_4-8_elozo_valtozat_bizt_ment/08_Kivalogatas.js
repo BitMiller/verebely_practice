@@ -10,8 +10,8 @@ Kiválogatás(X[N], T, Y[M])
 Eljárás vége;
 */
 
-var szamok = new Array(8, 7, 6, 5);
-//var szamok = new Array(81, 7, 65, 5);
+//var szamok = new Array(8, 7, 6, 5);
+var szamok = new Array(81, 7, 65, 5);
 var tulajdonsag = 2;
 var valogatott = new Array();
 
@@ -25,8 +25,8 @@ function kivalogatas(x, t, y) {
             szamlalo = szamlalo + 1;
         }
     }
+
+    return y;
 }
 
-kivalogatas(szamok, tulajdonsag, valogatott);
-
-console.log("A(z) [" + szamok + "] tömbben lévő, " + tulajdonsag + "-val/-vel osztható számok: [" + valogatott + "]");
+console.log("A(z) [" + szamok + "] tömbben lévő, " + tulajdonsag + "-val/-vel osztható számok: [" + kivalogatas(szamok, tulajdonsag, valogatott) + "]");

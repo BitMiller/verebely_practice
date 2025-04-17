@@ -10,14 +10,14 @@ Eldöntés (X[N], T, VAN)
 Eljárás vége;
 */
 
-var szamok = new Array(12, 43, 87, -3);
+var szamok = new Array(12, 43, 2, -3);
 var tulajdonsag = 2;
 var van_e = false;
 
 function eldontes (x, t, van) {
     let i = 0;
 
-    while (i < x.length && x[i] % t != 0) {
+    while (i < x.length && x[i] != t) {
         i = i + 1;
     }
 
@@ -28,4 +28,4 @@ function eldontes (x, t, van) {
     return van;
 }
 
-console.log("A(z) [" + szamok + "] tömbben van-e olyan elem, amelyik osztható " + tulajdonsag + "-val/-vel? : " + eldontes(szamok, tulajdonsag, van_e));
+console.log("A(z) [" + szamok + "] tömbben megvan-e a(z) " + tulajdonsag + " szám? : " + eldontes(szamok, tulajdonsag, van_e));
