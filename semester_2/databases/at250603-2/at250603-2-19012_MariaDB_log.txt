@@ -1,0 +1,348 @@
+Last login: Tue Jun  3 16:46:38 on ttys000
+bitmiller@Gall-MacBook-Air ~ % cd applications
+cd: no such file or directory: applications
+bitmiller@Gall-MacBook-Air ~ % cd /applications
+bitmiller@Gall-MacBook-Air /applications % cd xampp
+bitmiller@Gall-MacBook-Air xampp % cd xamppfiles/bin
+bitmiller@Gall-MacBook-Air bin % ./mysql -u root
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 9
+Server version: 10.4.28-MariaDB Source distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| phpmyadmin         |
+| test               |
++--------------------+
+5 rows in set (0.006 sec)
+
+MariaDB [(none)]> create database 13esz;
+Query OK, 1 row affected (0.003 sec)
+
+MariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| 13esz              |
+| information_schema |
+| mysql              |
+| performance_schema |
+| phpmyadmin         |
+| test               |
++--------------------+
+6 rows in set (0.001 sec)
+
+MariaDB [(none)]> use 13esz
+Database changed
+MariaDB [13esz]> create tableMariaDB [13esz]> CREATE TABLE termekek(
+    -> termekkod SMALLINT AUTO_INCREMENT,
+    -> termeknev VARCHAR(100) NOT NULL,
+    -> egysegar INT UNSIGNED NOT NULL DEFAULT 0,
+    -> PRIMARY KEY (termekkod),
+    -> UNIQUE (termeknev)
+    -> );
+Query OK, 0 rows affected (0.022 sec)
+
+MariaDB [13esz]> CREATE TABLE szamlak (
+    -> szamlaszam INT AUTO_INCREMENT,
+    -> datum DATE NOT NULL,
+    -> PRIMARY KEY (szamlaszam)
+    -> );
+Query OK, 0 rows affected (0.009 sec)
+
+MariaDB [13esz]> describe termekek;
++-----------+------------------+------+-----+---------+----------------+
+| Field     | Type             | Null | Key | Default | Extra          |
++-----------+------------------+------+-----+---------+----------------+
+| termekkod | smallint(6)      | NO   | PRI | NULL    | auto_increment |
+| termeknev | varchar(100)     | NO   | UNI | NULL    |                |
+| egysegar  | int(10) unsigned | NO   |     | 0       |                |
++-----------+------------------+------+-----+---------+----------------+
+3 rows in set (0.008 sec)
+
+MariaDB [13esz]> CREATE TABLE vasarlasok (
+    -> termekkod SMALLINT NOT NULL,
+    -> szamlaszam INT NOT NULL,
+    -> mennyiseg TINYINT NOT NULL DEFAULT 0,
+    -> FOREIGN KEY (termekkod) REFERENCES termekek(termekkod),
+    -> FOREIGN KEY (szamlaszam) REFERENCES szamlak(szamlaszam)
+    -> );
+Query OK, 0 rows affected (0.014 sec)
+
+MariaDB [13esz]> alter table termekek
+    -> add egyseg varchar(20) not null default 'darab';
+Query OK, 0 rows affected (0.011 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [13esz]> describe termekek;
++-----------+------------------+------+-----+---------+----------------+
+| Field     | Type             | Null | Key | Default | Extra          |
++-----------+------------------+------+-----+---------+----------------+
+| termekkod | smallint(6)      | NO   | PRI | NULL    | auto_increment |
+| termeknev | varchar(100)     | NO   | UNI | NULL    |                |
+| egysegar  | int(10) unsigned | NO   |     | 0       |                |
+| egyseg    | varchar(20)      | NO   |     | darab   |                |
++-----------+------------------+------+-----+---------+----------------+
+4 rows in set (0.004 sec)
+
+MariaDB [13esz]> create database test01
+    -> 
+    -> ;
+Query OK, 1 row affected (0.001 sec)
+
+MariaDB [13esz]> show databases
+    -> ;
++--------------------+
+| Database           |
++--------------------+
+| 13esz              |
+| information_schema |
+| mysql              |
+| performance_schema |
+| phpmyadmin         |
+| test               |
+| test01             |
++--------------------+
+7 rows in set (0.001 sec)
+
+MariaDB [13esz]> MariaDB [13esz]> use test
+Database changed
+MariaDB [test]> show tables
+    -> ;
+Empty set (0.001 sec)
+
+MariaDB [test]> drop test
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'test' at line 1
+MariaDB [test]> drop database test
+    -> ;
+Query OK, 0 rows affected, 2 warnings (0.006 sec)
+
+MariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| 13esz              |
+| information_schema |
+| mysql              |
+| performance_schema |
+| phpmyadmin         |
+| test01             |
++--------------------+
+6 rows in set (0.001 sec)
+
+MariaDB [(none)]> use test01
+Database changed
+MariaDB [test01]> use 13esz
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+MariaDB [13esz]> show help
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'help' at line 1
+MariaDB [13esz]> help
+
+General information about MariaDB can be found at
+http://mariadb.org
+
+List of all client commands:
+Note that all text commands must be first on line and end with ';'
+?         (\?) Synonym for `help'.
+clear     (\c) Clear the current input statement.
+connect   (\r) Reconnect to the server. Optional arguments are db and host.
+delimiter (\d) Set statement delimiter.
+edit      (\e) Edit command with $EDITOR.
+ego       (\G) Send command to MariaDB server, display result vertically.
+exit      (\q) Exit mysql. Same as quit.
+go        (\g) Send command to MariaDB server.
+help      (\h) Display this help.
+nopager   (\n) Disable pager, print to stdout.
+notee     (\t) Don't write into outfile.
+pager     (\P) Set PAGER [to_pager]. Print the query results via PAGER.
+print     (\p) Print current command.
+prompt    (\R) Change your mysql prompt.
+quit      (\q) Quit mysql.
+rehash    (\#) Rebuild completion hash.
+source    (\.) Execute an SQL script file. Takes a file name as an argument.
+status    (\s) Get status information from the server.
+system    (\!) Execute a system shell command.
+tee       (\T) Set outfile [to_outfile]. Append everything into given outfile.
+use       (\u) Use another database. Takes database name as argument.
+charset   (\C) Switch to another charset. Might be needed for processing binlog with multi-byte charsets.
+warnings  (\W) Show warnings after every statement.
+nowarning (\w) Don't show warnings after every statement.
+
+For server side help, type 'help contents'
+
+MariaDB [13esz]> insert into termekek values (1, 'cipő', 29650, 'pár');
+Query OK, 1 row affected (0.006 sec)
+
+MariaDB [13esz]> MariaDB [13esz]> describe termekek;
++-----------+------------------+------+-----+---------+----------------+
+| Field     | Type             | Null | Key | Default | Extra          |
++-----------+------------------+------+-----+---------+----------------+
+| termekkod | smallint(6)      | NO   | PRI | NULL    | auto_increment |
+| termeknev | varchar(100)     | NO   | UNI | NULL    |                |
+| egysegar  | int(10) unsigned | NO   |     | 0       |                |
+| egyseg    | varchar(20)      | NO   |     | darab   |                |
++-----------+------------------+------+-----+---------+----------------+
+4 rows in set (0.003 sec)
+
+MariaDB [13esz]> select * from termekek;
++-----------+-----------+----------+--------+
+| termekkod | termeknev | egysegar | egyseg |
++-----------+-----------+----------+--------+
+|         1 | cipő      |    29650 | pár    |
++-----------+-----------+----------+--------+
+1 row in set (0.004 sec)
+
+MariaDB [13esz]> insert into termekek (termeknev, egysegar) values ('pulóver', 6460);
+Query OK, 1 row affected (0.003 sec)
+
+MariaDB [13esz]> select * from termekek;
++-----------+-----------+----------+--------+
+| termekkod | termeknev | egysegar | egyseg |
++-----------+-----------+----------+--------+
+|         1 | cipő      |    29650 | pár    |
+|         2 | pulóver   |     6460 | darab  |
++-----------+-----------+----------+--------+
+2 rows in set (0.001 sec)
+
+MariaDB [13esz]> insert into termekek values (3, 'nadrág', 15640, 'db');
+Query OK, 1 row affected (0.003 sec)
+
+MariaDB [13esz]> select * from termekek;
++-----------+-----------+----------+--------+
+| termekkod | termeknev | egysegar | egyseg |
++-----------+-----------+----------+--------+
+|         1 | cipő      |    29650 | pár    |
+|         2 | pulóver   |     6460 | darab  |
+|         3 | nadrág    |    15640 | db     |
++-----------+-----------+----------+--------+
+3 rows in set (0.001 sec)
+
+MariaDB [13esz]> update termekek set egyseg='darab' where egyseg='db';
+Query OK, 1 row affected (0.006 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [13esz]> select * from termekek;
++-----------+-----------+----------+--------+
+| termekkod | termeknev | egysegar | egyseg |
++-----------+-----------+----------+--------+
+|         1 | cipő      |    29650 | pár    |
+|         2 | pulóver   |     6460 | darab  |
+|         3 | nadrág    |    15640 | darab  |
++-----------+-----------+----------+--------+
+3 rows in set (0.001 sec)
+
+MariaDB [13esz]> DELETE FROM termekek WHERE EGYSEG='pár';
+Query OK, 1 row affected (0.003 sec)
+
+MariaDB [13esz]> select * from termekek;
++-----------+-----------+----------+--------+
+| termekkod | termeknev | egysegar | egyseg |
++-----------+-----------+----------+--------+
+|         2 | pulóver   |     6460 | darab  |
+|         3 | nadrág    |    15640 | darab  |
++-----------+-----------+----------+--------+
+2 rows in set (0.001 sec)
+
+MariaDB [13esz]> describe table termekek
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'table termekek' at line 1
+MariaDB [13esz]> escrible termekek;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'escrible termekek' at line 1
+MariaDB [13esz]> describle termekek;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'describle termekek' at line 1
+MariaDB [13esz]> insert into termekek vaules (1, 'cipő', 29650, 'pár');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'vaules (1, 'cipő', 29650, 'pár')' at line 1
+MariaDB [13esz]> insert into termekek values (1, 'cipő', 29650, 'pár');
+Query OK, 1 row affected (0.002 sec)
+
+MariaDB [13esz]> select * from termekek;
++-----------+-----------+----------+--------+
+| termekkod | termeknev | egysegar | egyseg |
++-----------+-----------+----------+--------+
+|         1 | cipő      |    29650 | pár    |
+|         2 | pulóver   |     6460 | darab  |
+|         3 | nadrág    |    15640 | darab  |
++-----------+-----------+----------+--------+
+3 rows in set (0.001 sec)
+
+MariaDB [13esz]> DELETE FROM termekek WHERE EGYSEG='pár';
+Query OK, 1 row affected (0.003 sec)
+
+MariaDB [13esz]> insert into termekek (termeknev, egysegar, egyseg) values ('cipő', 29650, 'pár');
+Query OK, 1 row affected (0.003 sec)
+
+MariaDB [13esz]> select * from termekek;
++-----------+-----------+----------+--------+
+| termekkod | termeknev | egysegar | egyseg |
++-----------+-----------+----------+--------+
+|         2 | pulóver   |     6460 | darab  |
+|         3 | nadrág    |    15640 | darab  |
+|         4 | cipő      |    29650 | pár    |
++-----------+-----------+----------+--------+
+3 rows in set (0.001 sec)
+
+MariaDB [13esz]> delete from termekek;
+Query OK, 3 rows affected (0.003 sec)
+
+MariaDB [13esz]> select * from termekek;
+Empty set (0.001 sec)
+
+MariaDB [13esz]> > insert into termekek (termeknev, egysegar, egyseg) values ('cipő', 2965;5C0, 'pár');;5D
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '> insert into termekek (termeknev, egysegar, egyseg) values ('cipő', 2965' at line 1
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '5C0, 'pár')' at line 1
+ERROR: No query specified
+
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '5D' at line 1
+MariaDB [13esz]> insert into termekek (termeknev, egysegar, egyseg) values ('cipő', 29650, 'pár');
+Query OK, 1 row affected (0.002 sec)
+
+MariaDB [13esz]> select * from termekek;
++-----------+-----------+----------+--------+
+| termekkod | termeknev | egysegar | egyseg |
++-----------+-----------+----------+--------+
+|         5 | cipő      |    29650 | pár    |
++-----------+-----------+----------+--------+
+1 row in set (0.001 sec)
+
+MariaDB [13esz]> 
+MariaDB [13esz]> truncate termekek;
+ERROR 1701 (42000): Cannot truncate a table referenced in a foreign key constraint (`13esz`.`vasarlasok`, CONSTRAINT `vasarlasok_ibfk_1` FOREIGN KEY (`termekkod`) REFERENCES `13esz`.`termekek` (`termekkod`))
+MariaDB [13esz]> alter table vasarlasok
+    -> drop constraint vasarlasok_ibfk_1
+    -> ;
+Query OK, 0 rows affected (0.009 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [13esz]> truncate termekek;
+Query OK, 0 rows affected (0.005 sec)
+
+MariaDB [13esz]> select * from termekek;
+Empty set (0.002 sec)
+
+MariaDB [13esz]> insert into termekek (termeknev, egysegar, egyseg) values ('cipő', 29650, 'pár');
+Query OK, 1 row affected (0.002 sec)
+
+MariaDB [13esz]> select * from termekek;
++-----------+-----------+----------+--------+
+| termekkod | termeknev | egysegar | egyseg |
++-----------+-----------+----------+--------+
+|         1 | cipő      |    29650 | pár    |
++-----------+-----------+----------+--------+
+1 row in set (0.001 sec)
+
+MariaDB [13esz]> 

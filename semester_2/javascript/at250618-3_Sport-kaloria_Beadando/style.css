@@ -1,0 +1,155 @@
+:root {
+/* COLOR PALETTE: */
+    --pageBackgroundColor: #0f94ec;
+    --pageBackgroundColorShadow: #0e7ac2;
+    --calcBackgroundColor: white;
+    --in_col_kcalPerH: #FFBB4E;
+    --in_col_kcalPerH_border: #f1b24b;
+    --in_col_kcalPerH_sum: #70C0BD;
+    --in_col_kcalPerH_sum_border: #68b4b2;
+    --in_col_min: #FFFFFF;
+    --in_col_kcal: #F1F2F6;
+    --in_col_kcal_sum: #D4ECEC;
+    --in_col_kcal_sum_border: #c9e0e0;
+    --in_col_border: #ECECEC;
+    --bt_col_clearData_left: #94D4D3;
+    --bt_col_clearData_right: #74C3C0;
+}
+
+html, body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 120%;
+    height: 100%;
+    margin: 0;
+    background-color: var(--pageBackgroundColor);
+}
+
+th, td {
+    padding: 4px 10px;
+}
+
+table th:nth-child(1),
+table td:nth-child(1) {
+    width: 80%;
+    text-align: left;
+}
+
+table th:nth-child(2),
+table td:nth-child(2) {
+    /*background-color: red;*/
+    text-align: center;
+}
+
+input {
+    font-size: 120%;
+    border-radius: 10px;
+    border: none;
+    height: 40px;
+}
+
+.cl_in_kcalPerH {
+    text-align: center;
+    background-color: var(--in_col_kcalPerH);
+    border: 2px solid var(--in_col_kcalPerH_border);
+    color: white;
+    width: 90px;
+}
+
+.cl_in_min {
+    text-align: right;
+    padding-right: 30px;
+    background-color: var(--in_col_min);
+    border: 2px solid var(--in_col_border);
+    width: 75px;
+}
+
+.cl_in_kcal {
+    text-align: right;
+    padding-right: 10px;
+    background-color: var(--in_col_kcal);
+    border: 2px solid var(--in_col_border);
+    width: 80px;
+}
+
+.cl_in_kcalPerH_sum {
+    text-align: center;
+    /*background-color: var(--in_col_kcalPerH);*/
+    background: linear-gradient(to right, var(--bt_col_clearData_left), var(--bt_col_clearData_right));
+    border: 2px solid var(--in_col_kcalPerH_sum_border);
+    color: white;
+    width: 90px;
+}
+
+.cl_in_min_sum {
+    text-align: center;
+    background-color: var(--in_col_min);
+    width: 110px;
+    border: none;
+    font-weight: bold;
+    padding: 0;
+    /*background-color: red;*/
+}
+
+.cl_in_kcal_sum {
+    text-align: center;
+    background-color: var(--in_col_kcal_sum);
+    border: 2px solid var(--in_col_kcal_sum_border);
+    width: 88px;
+}
+
+.cl_bold {
+    font-weight: bold;
+}
+
+#id_calcTable {
+    margin: 0 auto;
+    padding: 15px;
+    /*display: flex;
+    align-items: center;*/
+    /*width: 600px;*/
+    width: 100%;
+    border-collapse: separate;
+    overflow: scroll;
+    table-layout: auto;
+    border-radius: 10px;
+    border: 1px solid var(--in_col_border);
+    box-shadow: 2px 2px 5px 5px var(--pageBackgroundColorShadow);
+    background-color: var(--calcBackgroundColor);
+    /*transform-origin: top left;*/
+}
+
+#id_calcBody {
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#id_span_dailyCaloryPercent {
+    font-weight: bold;
+}
+
+#id_bt_clearData {
+    text-align: center;
+    background: linear-gradient(to right, var(--bt_col_clearData_left), var(--bt_col_clearData_right));
+    height: 60px;
+    width: 550px;
+    font-size: 110%;
+    border: 2px solid var(--in_col_kcalPerH_sum_border);
+    border-radius: 20px;
+    color: white;
+}
+
+#id_tableScaler {
+    width: 600px;
+    /*transform-origin: top left;*/
+}
+/*
+@media (max-width: 600px) {
+    #id_tableScaler {
+        transform: scale(calc(100vw / 600));
+    }
+}
+*/

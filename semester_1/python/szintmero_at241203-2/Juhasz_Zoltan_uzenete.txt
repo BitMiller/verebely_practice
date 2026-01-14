@@ -1,0 +1,15 @@
+SZINTMÉRŐ FELADATSOR
+Kedves 13esz_2025 hallgatói,
+ 
+Ahogy múlt héten említettem, a mai este első felében önálló feladatok kaptok, ami itt található. Én ~18:30tól leszek elérhető, és a feladattal kapcsolatos kérdéseket fogjuk megvitatni (ha lesznek).
+ 
+Reális megoldási idő jelen felkészültség mellett (ha és amennyiben tartottad a szeptemberben javasolt napi gyakorlási időt)~200 perc,
+vizsgán ez ~75 perc alatt kell, hogy menjen (ha valaki ezt a szintidőt már most hozza az kicsit megnyugodhat )
+ 
+A feladatlap itt található (4 feladat, az első "bemelegítő")
+ 
+ha jól tudom, a Heron formula nem "középiskolás anyag" - ezzel tudod meghatározni egy (általános) háromszög területét az oldalhosszainak ismeretében. Erre vonatkozóan magyarázatot itt találtok, az ismerete egyik feladatnál jól jöhet:
+https://en.wikipedia.org/wiki/Heron%27s_formula
+de egyébként ÁLTALÁNOS "szabály"/ajánlás, hogy minden "zárthelyi dolgozaton" vagy teszt megoldása közben szabadon használhattok internetet általános keresésre illetve a programnyelvi vagy a használt technológiák dokumentációjának megtekintésére (tulajdonképpen egyedül közvetlen kommunikációra, és "kifejezetten a dolgozathoz előkészített jegyzetek megtekintésére" nem - ez a szabály az alap- és a záróvizsga zárthelyi részén is érvényben lesz!)
+ 
+Sok sikert kívánok!

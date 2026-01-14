@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="hun">
+    <head>
+        <meta charset="UTF-8">
+        <meta >
+        <link type="text/css" rel="stylesheet" href="style.css">
+        <title>Regisztrációs zűrlap</title>
+    </head>
+
+    <body>
+        <main>
+            <form id="id_daForm" action="form_test01.php">
+
+                <h3>Regisztráció</h3>
+
+                <div class="cl_field">
+                    <label for="name_userName">Felhasználónév:</label><br>
+                    <input type="text" name="name_userName" id="id_userName">
+                    <p class="cl_hint cl_dispNone" id="id_hint_userName"></p>
+                </div>
+
+                <div class="cl_field">
+                    <label for="name_eMail">E-mail cím:</label><br>
+                    <input type="email" name="name_eMail" id="id_eMail">
+                    <p class="cl_hint cl_dispNone" id="id_hint_eMail"></p>
+                </div>
+
+                <div class="cl_field">
+                    <label for="name_phone">Mobiltyelefony:</label><br>
+                    <input type="text" name="name_phone" id="id_phone">
+                    <p class="cl_hint cl_dispNone" id="id_hint_phone"></p>
+                </div>
+
+                <div class="cl_field">
+                    <label for="name_birth">Születés:</label><br>
+                    <input type="date" name="name_birth" id="id_birth">
+                    <p class="cl_hint cl_dispNone" id="id_hint_birth"></p>
+                </div>
+
+                <div class="cl_field">
+                    <label for="name_password">Jelszó:</label><br>
+                    <input type="password" name="name_password" id="id_password">
+                    <p class="cl_hint cl_dispNone" id="id_hint_password"></p>
+                </div>
+
+                <div class="cl_field">
+                    <label for="name_password2">Jelszó újra:</label><br>
+                    <input type="password" name="name_password2" id="id_password2">
+                    <p class="cl_hint cl_dispNone" id="id_hint_password2"></p>
+                </div>
+
+                <div class="cl_field">
+                    <label for="name_accept">Bármi, amit beküld, felhasználható ön ellen az íróságon:</label><br>
+                    <input type="checkbox" name="name_accept" id="id_accept">
+                    <span>Egye fene</span><br>
+                    <p class="cl_hint cl_dispNone" id="id_hint_accept"></p>
+                </div>
+
+                <div>
+                    <input type="submit" name="name_submit" id="id_submit">
+                </div>
+
+            </form>
+        </main>
+
+        <script type="text/javascript" src="script.js"></script>
+    </body>
+</html>

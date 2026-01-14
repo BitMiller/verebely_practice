@@ -1,0 +1,183 @@
+@250603-2-1600
+
+dbeaver - tud kapcsolódni adatbázishoz, és parancsokat normálisan tud megjegyezni stb., Norbi javallata
+
+
+- On Win:
+cmd.exe
+
+> cd c:\xampp\myspl\bin
+
+let username = root
+If I give no password parameter it won't ask for it
+
+> mysql -u root
+
+Now I'm inside the MariaDB, it's running, it's commands are available now, and not the base cmd.exe's
+
+
+
+
+- On MacOS:
+terminal.app
+
+> cd /Applications/XAMPP/xamppfiles/bin
+
+> ./mysql -u root
+
+
+
+
+
+
+
+> show databases;
+It isd a command, and as such it needs a semicolon at the end (except for these basic commands, but for safety/regularity, let's use them also here!)
+
+> create database test;
+
+> show databases;
+
+> drop database test;
+
+> show databases;
+Up arrow brings earlier commands
+
+> create database 13esz;
+
+> use 13esz;
+
+Now I switched to this database. But only if I have the rights for it.
+
+> show tables;
+No tables yet.
+
+> CREATE TABLE termekek(
+termekkod SMALLINT AUTO_INCREMENT,
+termeknev VARCHAR(100) NOT NULL,
+egysegar INT UNSIGNED NOT NULL DEFAULT 0,
+PRIMARY KEY (termekkod),
+UNIQUE (termeknev)
+);
+
+> describe termekek;
+
+> CREATE TABLE szamlak (
+szamlaszam INT AUTO_INCREMENT,
+datum DATE NOT NULL,
+PRIMARY KEY (szamlaszam)
+);
+
+> CREATE TABLE vasarlasok (
+termekkod SMALLINT NOT NULL,
+szamlaszam INT NOT NULL,
+mennyiseg TINYINT NOT NULL DEFAULT 0,
+FOREIGN KEY (termekkod) REFERENCES termekek(termekkod),
+FOREIGN KEY (szamlaszam) REFERENCES szamlak(szamlaszam)
+);
+
+> alter table termekek
+add egyseg varchar(20) not null default 'darab';
+
+
+
+
+> https://info.nytta.hu/szf/Adatbazis_kezeles/ab13_elm_07_adatmodositas.pdf
+
+
+
+- DDL commands: structural, szerkezeti változtatások
+
+- DML utasítások: a szerkezet nem változik, csak az adatokkal foglalkozom
+> INSERT 
+> DELETE
+> UPDATE
+érvényességi kör: adattábla rekordja
+mindig rekordszinten, és teljes rekord szinten történnek a dolgok.
+
+INSERT INTO tablanev VALUES (értékek) : így a sorrendet tartanom kell
+INSERT INTO tablanev (mezők) VALUES (értékek) : így a sorrendet tartanom kell
+
+> insert into termekek values (1, 'cipő', 29650, 'pár');
+
+> select * from termekek;
+
+> insert into termekek (termeknev, egysegar) values ('pulóver', 6460);
+
+> select * from termekek;
+
+> insert into termekek values (3, 'nadrág', 15640, 'db');
+
+> select * from termekek;
+
+> update termekek set egyseg='darab' where egyseg='db';
+
+( > DELETE FROM termekek; - feltétel nélkül minden rekordot töröl )
+
+> DELETE FROM termekek WHERE EGYSEG='pár';
+
+> insert into termekek values (1, 'cipő', 29650, 'pár');
+
+> DELETE FROM termekek WHERE EGYSEG='pár';
+
+> insert into termekek (termeknev, egysegar, egyseg) values ('cipő', 29650, 'pár');
+itt a kulcs 4-es lett, nem töltötte fel a legnagyobb kulcsig meglévő szabad helyekre az értékeket, hanem a legnagyobbat kezdi el pluszolni.
+
+> delete from termekek;
+
+> insert into termekek (termeknev, egysegar, egyseg) values ('cipő', 29650, 'pár');
+
+> select * from termekek;
+a cipő id-je 5, nem 1, pedig üres táblához adtuk hozzá!
+
+> truncate termekek;
+nem fogja engedni, mert ezen tábla egyik tulajdonságára van hivatkozás (termekkod), külső kulcsság története áll fenn
+integritási feltétel konfliktus
+Tkp ez egy integritásvédelem
+ez a táblámat lenullázná teljesen, nem csak a rekordokat törli ki belőle
+
+ERROR 1701 (42000): Cannot truncate a table referenced in a foreign key constraint (`13esz`.`vasarlasok`, CONSTRAINT `vasarlasok_ibfk_1` FOREIGN KEY (`termekkod`) REFERENCES `13esz`.`termekek` (`termekkod`))
+
+(
+> alter table vasarlasok
+change termekkod (és itt ismételni kéne a nevet, de most ezt a parancsot nem vittük végig, itt rename-elni is lehet)
+ennél csak adattípust és integritást lehet változtatni
+)
+
+> alter table vasarlasok
+modify
+stb
+
+> alter table vasarlasok
+drop constraint vasarlasok_ibfk_1;
+
+> truncate termekek;
+
+> select * from termekek;
+Empty set (0.002 sec)
+
+> insert into termekek (termeknev, egysegar, egyseg) values ('cipő', 29650, 'pár');
+
+> select * from termekek;
+
+
+
+HÁZI FELADAT:
+
+végigcsinálni:
+
+https://info.nytta.hu/szf/Adatbazis_kezeles/ab13_gyak_06_sql_ddl_dml.pdf
+
+
+
+//0#==========//
+
+@250610-2-1600
+jelenléti 40es terem Verebély
+
+DQL utasítások
+
+Házi feladat: a 08-as feladatok a névnapos és szülinapos
+
+
+

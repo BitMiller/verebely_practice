@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<!-- http://0.0.0.0:8080/Dropbox/Prog/szoftverfejleszto_verebely/git/semester_2/javascript/at250611-3_Szamologep_Beadando/index.html -->
+<html lang=hu>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <script type="text/javascript" src="script.js" defer></script>
+        <title>Meztéllábos számológép</title>
+    </head>
+
+    <body>
+        <main>
+            <h3>Meztéllábos számológép</h3>
+            <input class="cl_display" id="id_display" type="text" readonly>
+            <p id="id_message">&nbsp;</p>
+            <div class="cl_buttonContainer">
+                <button onclick="InsertDigit(7)">7</button>
+                <button onclick="InsertDigit(8)">8</button>
+                <button onclick="InsertDigit(9)">9</button>
+                <button onclick="InsertOperator('/')">/</button>
+                <button onclick="InsertDigit(4)">4</button>
+                <button onclick="InsertDigit(5)">5</button>
+                <button onclick="InsertDigit(6)">6</button>
+                <button onclick="InsertOperator('*')">*</button>
+                <button onclick="InsertDigit(1)">1</button>
+                <button onclick="InsertDigit(2)">2</button>
+                <button onclick="InsertDigit(3)">3</button>
+                <button onclick="InsertOperator('-')">-</button>
+                <button onclick="Clear()">C</button>
+                <button onclick="InsertDigit(0)">0</button>
+                <button onclick="Evaluate()">=</button>
+                <button onclick="InsertOperator('+')">+</button>
+            </div>
+        </main>
+    </body>
+
+</html>

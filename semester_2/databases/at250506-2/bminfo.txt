@@ -1,0 +1,83 @@
+source:
+@250511-7-1951
+> Leni\\c:\BitMiller\Learning\Informatics\Szoftverfejlesztő\2-félév\Adatbázis-kezelés\Gyakorlás\
+
+_ab_gyak_feladatok.pdf
+
+1. E-K modell készítése
+
+
+1.1 feladat
+
+Szállítmányozási cég szeretné nyilvántartani a gépkocsi-parkját, a megrendelőit, a fuvarjait, valamint a kiszállított árucikkeket.
+Az adatbázisban a következő információkat kell eltárolni:
+
+> Gépkocsi
+ > típus
+ > hengerűrtartalom
+ > fogyasztás
+ > raktér
+ > rendszám
+> Megrendelő
+ > név
+ > cím
+> Szállítás
+ > dátum
+ > sikeresség
+ > célcím
+> Áru
+ > kód
+ > megnevezés
+ > méretek
+
+Minden esetben a megrendelő bízza meg a szállítmányozó céget egy szállítással. Egy megrendelő több árut is szállíttathat egy alkalommal.
+
+Tervezze meg az adatbázis E-K modelljét!
+Jelölje a kulcsokat!
+
+
+
+
+1.2. feladat
+Tervezzen adatbázist egy internetes fórumhoz! A fórumot bárki megnézheti, de csak regisztrált felhasználók írhatnak be üzenetet/véleményt.
+Nyilván kell tartani a látogatókat (statisztika miatt), a felhasználókat, és az üzeneteket.
+Statisztikai szempontból fontos lehet, hogy vannak-e visszajáró látogatók, illetve, hogy egy látogató mikor nézte meg az oldalt.
+A fórumra több témakörben írhatnak a felhasználók, ezért egy üzenethez el kell tárolni, hogy mely témakör(ök)be tartozik.
+
+> Látogatók
+ > ip cím
+ > dátum
+> Felhasználók
+ > név
+ > jelszó
+> Üzenetek
+ > tartalom
+ > ki írta
+ > mikor írta
+ > milyen témakör(ök)be tartozik
+> Témakörök
+ > megnevezés
+
+Készítse el az adatbázis E-K modelljét!
+
+
+
+
+
+A feladat megoldandó az alábbiak alapján:
+
+fl@"ab13_elm_01_tervezes_alapok.pdf" - 18.o.
+
+Tervezési folyamat
+➢ Az igények összegyűjtése, elemzése
+o Felhasználói igények összegyűjtése, riport
+o Témába vágó információk tanulmányozása
+o Specifikáció, feldolgozási műveletek, tranzakciók rendszerezése
+➢ Koncepcionális terv elkészítése
+o EK / ER (Entity-Relationship) modell
+▪ Egyed-Kapcsolat-Tulajdonság, adattípusok
+o Tranzakciók, lekérdezések
+
+
++ fl@"ab13_elm_02_relacios_modell.pdf" - 8-10, 15-29, 41-50.o.
+

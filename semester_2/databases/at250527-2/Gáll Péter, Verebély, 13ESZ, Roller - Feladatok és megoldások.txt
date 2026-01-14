@@ -1,0 +1,391 @@
+
+FELADATOK:
+
+#1. Készítsen részletes specifikációt!
+#1.a. Mi a célja az adatbázisnak?
+#1.b. Hogyan/mire szeretné használni az adatbázist?
+#1.c. Mi az, amit feltétlenül el szeretne tárolni?
+#1.d. Melyek azok az adatok, amik módosíthatók?
+#1.e. Milyen adatokhoz lehessen hozzáférni?
+#1.f. Egyéb felmerülő kérdések
+
+#2. A specifikációja alapján módosítsa a kiindulási adatbázist!
+#2.a. Vegyen fel/töröljön táblá(ka)t, mező(ke)t!
+#2.b. Jelölje az alap reláció(ka)t! Adja meg az elsődleges kulcs(ok)at!
+#2.c. Hozza létre a szükséges kapcsolatokat!
+#2.d. Vizsgálja meg az adatbázist hatékonyság szempontjából!
+#2.e. Tegye hatékonnyá az adatbázist!
+#2.f. A kérdéses helyzeteket jegyezze fel!
+
+#3. Vezessen „naplót” a feladat megoldásáról!
+#3.a. Specifikáció
+#3.b. A végleges terv elkészülési folyamatának bemutatása, a tervezés lépései (az elvetett ötletek is!) és magyarázata
+#3.c. Mi okozott nehézséget?
+#3.d. Mi az, amit nem tudott úgy megoldani, ahogyan szerette volna?
+
+
+
+MEGOLDÁSOK:
+
+##########  #1. Készítsen részletes specifikációt!  ##########
+
+
+######  #1.a. Mi a célja az adatbázisnak?  ######
+
+Az adatbázis célja egy rollerbérbeadással nagy üzemben és nagy területen foglalkozó cég rollerorientált (és pl. nem könyvelésorientált) adatainak tárolása.
+
+
+######  #1.b. Hogyan/mire szeretné használni az adatbázist?  ######
+
+Használata megkönnyíti a rollerek állapotának és helyének nyomonkövetését a rendelkezésre állásuk maximalizálása érdekében.
+
+
+######  #1.c. Mi az, amit feltétlenül el szeretne tárolni?  ######
+
+Feltétlenül el kívánom tárolni az ügyfeleket, bérléseiket, rollereket, azok típusait, és a karbantartásukhoz szükséges adatokat, mint: tárolók, depók, a lehetséges helyszínek, karbantartók, a rollereket összegyűjtő és szállító trélerek, szervizműveletek, karbantartási munkák, alkatrészek, és a karbantartás részleteit, mint a résztvevő karbantartók, felhasznált cserealkatrészek és javítási munkálatok.
+
+
+######  #1.d. Melyek azok az adatok, amik módosíthatók?  ######
+
+Módosítható adat:
+ > a járművek GPS pozíciója, mivel mindig az aktuális állapotot kell tartalmazza
+ > a rollerek utolsó szervizének ideje, műszaki állapota, akkukapacitása
+ > a tárolók és depók telítettsége
+ > a cserealkatrészek raktáron tartott darabszáma
+
+
+######  #1.e. Milyen adatokhoz lehessen hozzáférni?  ######
+
+ > Az adatbázis karbantartója férjen hozzá minden adathoz teljes jogosultsággal
+ > A cég tulajdonosa és a könyvelés férjen hozzá az ügyfelekén kívül minden adathoz olvasási jogosultsággal
+ > A karbantartók férjenek hozzá a rollerek, tárolók, depók, szervizelések, alkatrészek adataihoz olvasási jogosultsággal
+ > Az ügyfelek férjenek hozzá saját adataikhoz és a rollerek, roller típusok, tárolók, saját bérléseik adataihoz olvasási jogosultsággal
+
+
+######  #1.f. Egyéb felmerülő kérdések  ######
+
+ > A könyvelés számára milyen részletinformációk tárolására lehet még szükség?
+ > A személyeket tároló alaptáblák rekordjai személyes adatok védelmének szempontjainak tisztázása
+ > A személyek rendszerből kikerülése jelzésének módja
+ > A személyek személyes adatai végleges törlése időpontjának megállapítása
+
+
+
+##########  #2. A specifikációja alapján módosítsa a kiindulási adatbázist!  ##########
+
+
+######  #2.a. Vegyen fel/töröljön táblá(ka)t, mező(ke)t!  ######
+ÉS
+######  #2.b. Jelölje az alap reláció(ka)t! Adja meg az elsődleges kulcs(ok)at!  ######
+
+ (EK) = elsődleges kulcs
+ (KK) = külső kulcs
+
+*** EREDETI ADATBÁZIS: ***
+
+ROLLER (roller_id (EK), gyártó_típus, gyártási_év, hatótávolság, akkukapacitás, karbantartás, lokáció, állapot)
+FELHASZNÁLÓ (felhasználó_id (EK), név, telefonszám, email_cím, igazolványszám)
+BÉRLÉS (számla_sorszáma (EK), felhasználó_id (KK), roller_id (KK), bérlés_kezdete, bérlés_vége, ár)
+
+Másképpen:
+
+#ROLLER
+ roller_id (EK)
+ gyártó_típus
+ gyártási_év
+ hatótávolság
+ akkukapacitás
+ karbantartás
+ lokáció
+ állapot
+
+#FELHASZNÁLÓ
+ felhasználó_id (EK)
+ név
+ telefonszám
+ email_cím
+ igazolványszám
+
+#BÉRLÉS
+ számla_sorszáma (EK)
+ felhasználó_id (KK)
+ roller_id (KK)
+ bérlés_kezdete
+ bérlés_vége
+ ár
+
+
+*** MÓDOSÍTÁSI LÉPCSŐK: ***
+
+ > roller_id -> roller_rendszám átnevezés
+ > a "felhasználó"-t átneveztem "ügyfél"-re
+ > a roller nem egyedi, gyártói adatait összesítettem (gyártó_típus, gyártási_év, hatótávolság), és külön táblát hoztam létre ROLLER_TÍPUSOK néven
+ > mivel több táblám is használ helyszín típusú adatcsoportot, létrehoztam egy HELYSZÍNEK táblát (hivatkozik rá: ROLLEREK, TÁROLÓK, DEPÓK, TRÉLEREK)
+ > mivel a szervizelés, jármű- és alkatrésztárolás depókban történik, ezért létrehoztam egy DEPÓK táblát (hivatkozik rá: ROLLEREK, TRÉLEREK, KARBANTARTÁSI_MUNKÁK)
+ > a komolyabb szervizelés nem az utcán, hanem depókban történik, ahová trélerekkel viszik be a rollereket, onnan szintén azokkal szállítják ki a tárolókig, illetve a rollerek megfelelő elosztását is azokkal oldják meg, így létrehoztam egy TRÉLEREK táblát (nem hivatkozik rá semmi - lehetne felveni a HELYSZÍNEK táblába egy-egy rekordot trélerenként a "típus" mezőnek "tréleren" értéket, a "cím" mezőnek pedig a tréler elsődleges kulcsát (rendszámát) adva, amelyre hivatkozhatna a ROLLEREK tábla "jelen_helyszín_id" mezője, ha éppen szállítás alatt van - ekkor a roller valós helyzetének megállapításához le kellene kérdezni a megjelölt tréler "jelen_helyszín_id" mezője által mutatott HELYSZÍNEK tábla megfelelő elsődleges kulcsú "gps_koordináták" mezőjét - de csak akkor, ha a "típus" mező nem "helyközi" értékkel bír, ellenkező (majdnem minden) esetben egy, a jelen adatbázisban még nem meghatározott helyről kell kinyerni az útban lévő tréler GPS koordinátáit. Mindezen okfejtés pedig fölösleges, ha egy külső rendszer GPS nyomkövetésből származó adatokkal rendszeresen frissíti az adatbázis tábláiban a megfelelő mezőket.)
+ > a karbantartókat is nyilvántartom a KARBANTARTÓK táblában
+ > a karbantartásokat a KARBANTARTÁSI_MUNKÁK táblában naplózom, hogy a munkahatékonyságot, az eszközállomány állagromlását nyomon lehessen követni, és hogy körmére nézhessenek a melósoknak, akik koporcolás helyett lébecolnak
+ > a cserealkatrészek fogyását is nyomon lehet követni az ALKATRÉSZEK táblában
+ > a fizikai dolgozók teljesítményének méréséhez kiváló eszköz a SZERVIZ_MŰVELETEK tábla
+
+
+*** MÓDOSÍTOTT ADATBÁZISOM: ***
+
+Alaprelációk:
+
+ROLLEREK (roller_rendszám (EK), roller_típus_id (KK), utolsó_szerviz_ideje, műszaki_állapot, akkukapacitás, jelen_helyszín_id (KK), otthon_depó_id (KK))
+ROLLER_TÍPUSOK (roller_típus_id (EK), gyártó, típus, évjárat, hatótávolság)
+ÜGYFELEK (ügyfél_id (EK), név, nicknév, telefonszám, email_cím, igazolványszám, egyenleg, bankszámla_szám)
+TÁROLÓK (tároló_id (EK), helyszín_id (KK), kapacitás, telítettség)
+HELYSZÍNEK (helyszín_id (EK), gps_koordináták, cím, típus)
+DEPÓK (depó_id (EK), helyszín_id (KK), kapacitás, telítettség)
+TRÉLEREK (rendszám (EK), jelen_helyszín_id (KK), otthon_depó_id (KK), kapacitás, telítettség)
+KARBANTARTÓK (karbantartó_id (EK), név, igazolványszám, jogosítvány, telefonszám)
+KARBANTARTÁSI_MUNKÁK (karbantartási_munka_id (EK), depó_id (KK), roller_rendszám (KK), kezdés, végzés)
+ALKATRÉSZEK (alkatrész_id (EK), megnevezés, raktáron_darabszám)
+SZERVIZ_MŰVELETEK (szerviz_művelet_id (EK), megnevezés, ár, normaidő)
+
+Másképpen:
+
+#ROLLEREK
+ roller_rendszám (EK) [karakteres]
+ roller_típus_id (KK) [numerikus]
+ utolsó_szerviz_ideje [dátum]
+ műszaki_állapot [karakteres]
+ akkukapacitás [numerikus]
+ jelen_helyszín_id (KK) [numerikus]
+ otthon_depó_id (KK) [numerikus]
+
+#ROLLER_TÍPUSOK
+ roller_típus_id (EK) [numerikus]
+ gyártó [karakteres]
+ típus [karakteres]
+ évjárat [numerikus]
+ hatótávolság [numerikus]
+
+#ÜGYFELEK
+ ügyfél_id (EK) [numerikus]
+ név [karakteres]
+ nicknév [karakteres]
+ telefonszám [karakteres]
+ email_cím [karakteres]
+ igazolványszám [karakteres]
+ egyenleg [numerikus]
+ bankszámla_szám [karakteres]
+
+#TÁROLÓK
+ tároló_id (EK) [numerikus]
+ helyszín_id (KK) [numerikus]
+ kapacitás [numerikus]
+ telítettség [numerikus]
+
+#HELYSZÍNEK
+ helyszín_id (EK) [numerikus]
+ gps_koordináták [karakteres]
+ cím [karakteres]
+ típus [karakteres]
+
+#DEPÓK
+ depó_id (EK) [numerikus]
+ helyszín_id (KK) [numerikus]
+ kapacitás [numerikus]
+ telítettség [numerikus]
+
+#TRÉLEREK
+ rendszám (EK) [karakteres]
+ jelen_helyszín_id (KK) [numerikus]
+ otthon_depó_id (KK) [numerikus]
+ kapacitás [numerikus]
+ telítettség [numerikus]
+
+#KARBANTARTÓK
+ karbantartó_id (EK) [numerikus]
+ név [karakteres]
+ igazolványszám [karakteres]
+ jogosítvány [karakteres]
+ telefonszám [karakteres]
+
+#KARBANTARTÁSI_MUNKÁK
+ karbantartási_munka_id (EK) [numerikus]
+ depó_id (KK) [numerikus]
+ roller_rendszám (KK) [karakteres]
+ kezdés [dátum]
+ végzés [dátum]
+
+#ALKATRÉSZEK
+ alkatrész_id (EK) [numerikus]
+ megnevezés [karakteres]
+ raktáron_darabszám [numerikus] (kiterjeszthető: alkatrész főraktár és per depó darabszám)
+
+#SZERVIZ_MŰVELETEK
+ szerviz_művelet_id (EK) [numerikus]
+ megnevezés [karakteres]
+ ár [numerikus]
+ normaidő [numerikus]
+
+
+######  #2.c. Hozza létre a szükséges kapcsolatokat!  ######
+
+"Kapcsolórelációk":
+
+BÉRLÉSEK (számla_sorszáma (EK), ügyfél_id (KK), roller_rendszám (KK), bérlés_kezdete, bérlés_vége, megtett_km)
+CSAPAT_PER_KARBANTARTÁSI_MUNKA (karbantartási_munka_id (KK), karbantartó_id (KK))
+MŰVELET_PER_KARBANTARTÁSI_MUNKA (karbantartási_munka_id (KK), szerviz_művelet_id (KK))
+ALKATRÉSZ_PER_KARBANTARTÁSI_MUNKA (karbantartási_munka_id (KK), alkatrész_id (KK))
+
+Másképpen:
+
+#BÉRLÉSEK
+ számla_sorszáma (EK) [numerikus]
+ ügyfél_id (KK) [numerikus]
+ roller_rendszám (KK) [karakteres]
+ bérlés_kezdete [dátum]
+ bérlés_vége [dátum]
+ megtett_km [numerikus]
+ (Ár : adódó)
+
+#CSAPAT_PER_KARBANTARTÁSI_MUNKA
+ karbantartási_munka_id (KK) [numerikus]
+ karbantartó_id (KK) [numerikus]
+  (a kettő együtt legyen elsődleges összetett kulcs)
+
+#MŰVELET_PER_KARBANTARTÁSI_MUNKA
+ karbantartási_munka_id (KK) [numerikus]
+ szerviz_művelet_id (KK) [numerikus]
+  (a kettő együtt legyen elsődleges összetett kulcs)
+
+#ALKATRÉSZ_PER_KARBANTARTÁSI_MUNKA
+ karbantartási_munka_id (KK) [numerikus]
+ alkatrész_id (KK) [numerikus]
+  (a kettő együtt legyen elsődleges összetett kulcs)
+
+
+
+
+######  #2.d. Vizsgálja meg az adatbázist hatékonyság szempontjából!  ######
+
+- nincs válasz -
+
+######  #2.e. Tegye hatékonnyá az adatbázist!  ######
+
+Táblák normalizálása:
+
+Eredeti adatbázis:
+
+
+#ROLLER tábla:
+
+ roller_id (EK)
+ gyártó_típus
+ gyártási_év
+ hatótávolság
+ akkukapacitás
+ karbantartás
+ lokáció
+ állapot
+
+1NF: gyártó_típus -> gyártó, típus :
+
+ {roller_id (EK)} -> összes másik
+ gyártó
+ típus
+ gyártási_év
+ hatótávolság
+ akkukapacitás
+ karbantartás
+ lokáció
+ állapot
+
+2NF kész: van elsődleges, egyszerű kulcs
+3NF: elkészítendő
+
+//1#=====//
+
+
+#FELHASZNÁLÓ tábla:
+
+ felhasználó_id
+ név
+ telefonszám
+ email_cím
+ igazolványszám
+
+
+1NF kész: minden mező atomi.
+2NF kész: van elsődleges kulcs, ami egyszerű, tehát minden atomi mező teljes függésben van vele.
+
+Funkcionális függőségek:
+
+{felhasználó_id} -> {név, telefonszám, email_cím, igazolványszám}
+
+{név} -> {}
+
+{telefonszám} -> {név} (a telefon előfizetői szerződésében csak egy személy neve szerepelhet, ill. a rollerhasználatkor egyetlen személynek akarunk számlázni)
+
+{email_cím} -> {név, igazolványszám} (ha az igazolványszámot meg kell adni)
+
+{igazolványszám} -> {név}
+
+3NF nincs kész: tranzitív függőségek vannak.
+
+
+//1#=====//
+
+
+#BÉRLÉS tábla:
+
+ számla_sorszáma (EK)
+ felhasználó_id (KK)
+ roller_id (KK)
+ bérlés_kezdete
+ bérlés_vége
+ ár
+
+1NF és 2NF rendben
+3NF: elkészítendő
+
+
+
+######  #2.f. A kérdéses helyzeteket jegyezze fel!  ######
+
+- nincs válasz -
+
+
+
+##########  #3. Vezessen „naplót” a feladat megoldásáról!  ##########
+
+> A feladat azért van txt fájlban, mert a metrón munkába és munkából zötyögve építettem fel / bővítettem ki az adatbázist. Igyekszem olvashatóan formázni. Visual Studio Code-ban kezelve az állományt számomra még áttekinthetőbb is, mintha .docx-ben, vagy .pdf-ben lenne. Pl. a keresett kifejezések kiemelésre kerülnek, és a jobb széli oszlopban kicsiben látszik az egész fájl tartalma.
+
+######  #3.a. Specifikáció  ######
+
+- nincs válasz -
+
+######  #3.b. A végleges terv elkészülési folyamatának bemutatása, a tervezés lépései (az elvetett ötletek is!) és magyarázata  ######
+
+Az adatbázis átalakítása fél-ösztönösen és igen dinamikusan történt, és túl sok a módosítás ahhoz, hogy minden lépcsőjét bemutassam, de alább legalább kísérletet teszek rá nagy vonalakban (nagyvonalú vagyok?).
+
+
+######  #3.c. Mi okozott nehézséget?  ######
+
+Hogy elegendő időt találjak a megálmodott részletesség kidolgozásához.
+
+
+######  #3.d. Mi az, amit nem tudott úgy megoldani, ahogyan szerette volna?  ######
+
+Mindent meg tudtam oldani, amit szerettem volna. Ami a "nem-szeretem" tudat okozója, az az, hogy az adatbázis által lefedett területnek és az adatbázis részletességének határokat kellett szabni, így több olyan szál van, amit még lehetne folytatni. Például:
+ > az alkatrészek helyszínfüggő nyilvántartása
+ > a dinamikus (járművek) és statikus (postai cím által jelölt helyszínek) GPS koordináták megkülönböztetése
+ > a karbantartási folyamatok leírásának részleteinek tovább bővítése
+ > a rollerek teljesítményének (akkumulátor üzemóra alapjáni állapot) részletesebb tárolása
+ > az ügyfelek irányában a funkcionalitás bővítése (pl. rendszeresen választott / kedvenc útvonalak naplózása)
+
+
+
+Megjegyzéseim:
+
+> Az alaptáblák rekordjainak számát 10-ben maximáltam az áttekinthetőség kedvéért.
+> Adataiknak generálása az eredeti szerző adatainak felhasználásával, kútfőből és általam írt, dedikált Python scriptekkel történt. A ChatGPT használatát mellőztem.
+> Logikai adattípus nem szerepel az adatbázis tulajdonságai között. Ez nem szándékos, csak így alakult.
+> A karbantartók jogosítvány tulajdonsága két fejleszteni valót tartalmaz:
+ > tartalmazhat null értéket, bár azt a nulláskarakterrel jelöltem
+ > az adatbázis jelen formájában egy karbantartónak csak egyféle jogosítványa lehet

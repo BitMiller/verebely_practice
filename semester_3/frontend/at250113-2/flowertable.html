@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<!-- file:///C:/Users/gall.peter/Desktop/at250113-2-1600%20-%20Frontend/flowertable.html -->
+<html>
+
+    <head>
+        <style>
+            table, td, th, caption {
+                border: 2px black solid;
+            }
+
+            th, td {
+                width: 2em;
+                height: 2em;
+            }
+
+            table {
+                margin: 35px auto;
+            }
+
+            .comic {
+                font-family: "Comic Sans MS", "Comic Sans", cursive;
+            }
+        </style>
+    </head>
+
+    <body>
+
+        <div>
+            <table>
+                <caption>Homework</caption>
+
+                <tr>
+                    <td colspan="2"></td>
+                    <td rowspan="2"></td>
+                </tr>
+                <tr>
+                    <td rowspan="2"></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="2"></td>
+                </tr>
+            </table>
+        </div>
+
+        <hr>
+
+        <div>
+            <table>
+                <caption id="id_table_caption" class="comic"></caption>
+
+                <tr>
+                    <th id="id_mx_00">&#x2205;</th>
+                    <th id="id_mx_10">1</th>
+                    <th id="id_mx_20">2</th>
+                    <th id="id_mx_30">3</th>
+                    <th id="id_mx_40">&#x2205;</th>
+                </tr>
+
+                <tr>
+                    <th id="id_mx_01">A</th>
+                    <td id="id_mx_11" colspan="2"></td>
+                    <td id="id_mx_31" rowspan="2"></td>
+                    <th id="id_mx_41">A</th>
+                </tr>
+                <tr>
+                    <th id="id_mx_02">B</th>
+                    <td id="id_mx_12" rowspan="2"></td>
+                    <td id="id_mx_22"></td>
+                    <th id="id_mx_42">B</th>
+                </tr>
+                <tr>
+                    <th id="id_mx_03">C</th>
+                    <td id="id_mx_23" colspan="2"></td>
+                    <th id="id_mx_43">C</th>
+                </tr>
+
+                <tr>
+                    <th id="id_mx_04">&#x2205;</th>
+                    <th id="id_mx_14">1</th>
+                    <th id="id_mx_24">2</th>
+                    <th id="id_mx_34">3</th>
+                    <th id="id_mx_44">&#x2205;</th>
+                </tr>
+            </table>
+        </div>
+
+
+
+
+        <script>
+
+            function ge(str) {
+                return document.getElementById(`id_mx_${str}`);
+            }
+
+            function sin2prec(num) {
+                return Math.round(Math.sin(num/180*Math.PI) * 100) / 100;
+            }
+
+            function scaleSinToByte(num) {
+                // num is -1 to 1, convert this interval to 0 - 255
+                //console.log(`scaleSinToByte: ${num} ${(num + 1) * 255 / 2}`);
+                return (num + 1) * 255 / 2;
+            }
+
+            function hex(num) {
+                //console.log(`hex(): num:${num} : ${Math.round(num).toString(16)}`);
+                hexstr = Math.round(num).toString(16);
+                if (hexstr.length == 1) hexstr = "0" + hexstr;
+                return hexstr;
+            }
+/*
+            var e_mx = [
+                [ge("00"), ge("10"), ge("20"), ge("30"), ge("40")],
+                [ge("01"), ge("11"), ge("11"), ge("31"), ge("41")],
+                [ge("02"), ge("12"), ge("22"), ge("22"), ge("42")],
+                [ge("03"), ge("03"), ge("23"), ge("33"), ge("43")],
+                [ge("04"), ge("14"), ge("24"), ge("34"), ge("44")]
+            ];
+*/
+            class SpiralElement {
+                constructor (element, timeOffset) {
+                    this.element = ge(element);
+                    this.timeOffset = timeOffset;
+                }
+            }
+
+            var e_spirals = [
+                [new SpiralElement("00", 0), new SpiralElement("10", 10), new SpiralElement("20", 20), new SpiralElement("30", 30), new SpiralElement("31", 40)],
+                [new SpiralElement("40", 0), new SpiralElement("41", 10), new SpiralElement("42", 20), new SpiralElement("43", 30), new SpiralElement("23", 40)],
+                [new SpiralElement("44", 0), new SpiralElement("34", 10), new SpiralElement("24", 20), new SpiralElement("14", 30), new SpiralElement("12", 40)],
+                [new SpiralElement("04", 0), new SpiralElement("03", 10), new SpiralElement("02", 20), new SpiralElement("01", 30), new SpiralElement("11", 40)]
+            ];
+            // Re-init time offsets:
+            for (let i = 0; i < 4; i++) {
+                for (let j = 0; j < 5; j++) {
+                    e_spirals[i][j].timeOffset = i*30+j*10;
+                }
+            }
+
+            var e_table_caption = document.getElementById("id_table_caption");
+            var captionText = "Homework Pimped";
+            var e_tCapText = [];
+            for (let i = 0; i < captionText.length; i++) {
+                let newSpan = document.createElement("span");
+                //newSpan.id = `id_tabCapText_${i}`;
+                newSpan.innerHTML = captionText[i];
+                e_tCapText.push(newSpan);
+                e_table_caption.appendChild(newSpan);
+            }
+
+            var e_center = new SpiralElement("22", 50);
+
+            var counter = 500;
+            
+            var degreeStart = -0;
+            var degreeInterval = 360;
+            var r_offset = 0;
+            var g_offset = 260;
+            var b_offset = 120;
+
+            var paletteLength = 128;
+            var colorPalette = [];
+
+            for (let i = 0; i < paletteLength; i++) {
+                let currDeg = degreeStart + degreeInterval/(paletteLength-1)*i;
+                let r_currDeg = currDeg + r_offset;
+                let g_currDeg = currDeg + g_offset;
+                let b_currDeg = currDeg + b_offset;
+
+                let r_hexCol = hex(scaleSinToByte(sin2prec(r_currDeg)));
+                let g_hexCol = hex(scaleSinToByte(sin2prec(g_currDeg)));
+                let b_hexCol = hex(scaleSinToByte(sin2prec(b_currDeg)));
+
+                colorPalette[i] = `#${r_hexCol}${g_hexCol}${b_hexCol}`;
+            }
+
+            //console.log(colorPalette);
+
+            var intervalId = setInterval(() => {
+                    for (let i = 0; i < 4; i++) {
+                        for (let j = 0; j < 5; j++) {
+                            e_spirals[i][j].element.style.backgroundColor = colorPalette[(counter - e_spirals[i][j].timeOffset) % paletteLength];
+                        }
+                    }
+                    for (let i = 0; i < e_tCapText.length; i++) {
+                        e_tCapText[i].style.color = colorPalette[(counter - i*4) % paletteLength];
+                    }
+                    e_center.element.style.backgroundColor = colorPalette[(counter - e_center.timeOffset) % paletteLength];
+                    counter++;
+                    /*
+                    if (counter > 50) {
+                        clearInterval(intervalId)
+                    }
+                    */
+                }, 10);
+
+        </script>
+
+    </body>
+
+</html>

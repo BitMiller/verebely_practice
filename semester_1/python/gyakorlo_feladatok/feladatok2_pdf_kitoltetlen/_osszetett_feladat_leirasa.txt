@@ -1,0 +1,31 @@
+Összetett feladat
+Készítsünk programot az alapműveletek gyakorlására. Az induláskor jelenjen meg a képernyő közepén egy menüsor, az alábbi menüpontokkal:
+
+1. Összeadás
+2. Kivonás
+3. Szorzás
+4. Osztás
+Válasszon menüpontot (1-4):
+
+Ha nem megfelelő a bemenet (nem 1..4), akkor lépjen ki a program.
+Ha megfelelő a bemenet, akkor a választott menüpontnak megfelelő 10 feladatot generáljon a program az alábbiak szerint:
+10 feladatot adjon fel véletlenszerűen generált számokkal
+a) összeadás esetén az 1…50 számok közül
+b) kivonás esetén szintén az 1…50 számok közül, de úgy, hogy a végeredmény ne lehessen negatív
+c) szorzás esetén a 2…10 számok közül
+d) osztás esetén az osztó és az osztandó is a 2…100 számkörből legyen, de ügyeljen rá, hogy csak olyan osztást adjon fel a program, aminek egész a végeredménye
+Minden feladatnál írja ki a feladat sorszámát is:
+
+1. 12 + 25 = 37
+helyes
+2. 39 + 8 =46
+helytelen
+
+A végeredmény beírása után a program írja ki, hogy helyes (zöld színnel) vagy helytelen (piros színnel) a válasz, és számolja a helyes megoldásokat.
+A 10 feladat után írja ki a program, hogy hány feladatot sikerült megoldani a 10-ből, valamint egy értékelést az alábbiak szerint:
+a) 10 jó megoldás esetén kitűnő
+b) 9 jó megoldás esetén nagyon jó
+c) 8 jó megoldás esetén jó
+d) 7 jó megoldás esetén közepes
+e) 6 jó megoldás esetén fejlődőképes
+f) 6-nál kevesebb jó megoldás esetén „Neked készült ez a program!”
